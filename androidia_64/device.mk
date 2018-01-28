@@ -159,10 +159,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/intel/android_ia/common/graphics/drirc:system/etc/drirc
 
-# Memtrack HAL
-PRODUCT_PACKAGES += \
-    memtrack.android_ia
-
 
 # HWComposer IA
 PRODUCT_PACKAGES += \
@@ -471,7 +467,7 @@ endif
 
 ifeq ($(MIXIN_DEBUG_LOGS),true)
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += persist.crashlogd.data_quota=50
-BOARD_SEPOLICY_DIRS += device/intel/sepolicy/crashlogd
+BOARD_SEPOLICY_DIRS += device/intel/android_ia/sepolicy/crashlogd
 
 CRASHLOGD_LOGS_PATH := "/data/logs"
 CRASHLOGD_APLOG := true
@@ -500,6 +496,28 @@ PRODUCT_PACKAGES_DEBUG += \
 # MIDI support
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
+##############################################################
+# Source: device/intel/mixins/groups/trusty/true/product.mk
+##############################################################
+
+KM_VERSION := 1
+
+ifeq ($(KM_VERSION),1)
+PRODUCT_PACKAGES += \
+	keystore.android_ia
+endif
+
+PRODUCT_PACKAGES += \
+	libtrusty
+
+##############################################################
+# Source: device/intel/mixins/groups/memtrack/true/product.mk
+##############################################################
+# memtrack HAL
+PRODUCT_PACKAGES += \
+	memtrack.android_ia \
+	android.hardware.memtrack@1.0-service \
+	android.hardware.memtrack@1.0-impl
 ##############################################################
 # Source: device/intel/mixins/groups/debug-kernel/default/product.mk
 ##############################################################
