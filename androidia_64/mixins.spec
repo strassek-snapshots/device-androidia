@@ -31,7 +31,7 @@ usb: host+acc
 lights: true
 thermal: dptf(intel_modem=true)
 config-partition: enabled
-vendor-partition: true
+vendor-partition: true(partition_size=1500,partition_name=android_vendor)
 factory-partition: true
 debug-crashlogd: true
 debug-logs: true
@@ -46,5 +46,3 @@ ioc-slcan-reboot: false
 camera: usbcamera
 memtrack: true
 touch: galax7200
-avb: true
-slot-ab: true
